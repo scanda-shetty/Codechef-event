@@ -3,9 +3,7 @@
 <% if(typeof alert != 'undefined') { %>
     <% alert.forEach(function(error) { %>
             <%= error.msg %>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+
     <% }) %>
 <% } %>
 <canvas>
@@ -13,7 +11,7 @@
 </canvas>
     <div class="wrapper">
 
-        <form action="/register" method="POST" novalidate>
+        <form action="/" method="POST" novalidate>
 
                 <h1>Codechef Labyrinth</h1>
 
