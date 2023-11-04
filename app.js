@@ -6,12 +6,13 @@ const app = express()
 const port = 5000
 
 // Set Templating Enginge
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+app.use(express.static('public'))
 app.set('view engine', 'ejs')
 
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 // Navigation
-app.get('', (req, res)=> {
+app.get('/', (req, res)=> {
     res.render('index')
 })
 
