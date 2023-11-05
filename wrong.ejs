@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body{
+    background-color: hsl(38, 61%, 73%);
+    margin: 0;
+            padding: 0;
+            overflow: hidden; /* Hide scrollbars */
+            background-color: hsl(38, 61%, 73);
+    margin: 0;
+    padding: 0;
+}
+canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Place the canvas behind other content */
+        }
+        h1{
+            display:flex;
+            justify-content: center;
+    align-items: center;
+    color:white;
+        }
+  
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+  <canvas id="matrix-rain"></canvas>
+  <h1>Wrong Answer</h1>
+  <script>
+    // Matrix Rain Animation
+    var canvas = document.getElementById("matrix-rain");
+    var ctx = canvas.getContext("2d");
+  
+    // Set the canvas size to match the window size
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  
+    // Characters used in the animation
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()";
+  
+    // Convert the string of characters to an array
+    characters = characters.split("");
+  
+    var font_size = 14;
+    var columns = canvas.width / font_size;
+    var drops = [];
+  
+    for (var x = 0; x < columns; x++) {
+      drops[x] = 1;
+    }
+  
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+      ctx.fillStyle = "#0F0";
+      ctx.font = font_size + "px arial";
+  
+      for (var i = 0; i < drops.length; i++) {
+        var text = characters[Math.floor(Math.random() * characters.length)];
+        ctx.fillText(text, i * font_size, drops[i] * font_size);
+  
+        if (drops[i] * font_size > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+  
+        drops[i]++;
+      }
+    }
+  
+    setInterval(draw, 33); // Refresh the animation every 33 milliseconds
+  </script>
